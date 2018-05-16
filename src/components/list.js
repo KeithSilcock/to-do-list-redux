@@ -12,6 +12,11 @@ class List extends React.Component{
     render(){
         const {listData} = this.props;
 
+        //loading screen
+        if(!listData.length){
+            return <h1>Loading...</h1>
+        }
+
         const listItems = listData.map( (item, index) => {
             return(
                 <li className="collection-item" key={index}>
