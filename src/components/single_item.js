@@ -11,7 +11,13 @@ class SingleItem extends React.Component{
 
     render(){
         const {title, details} = this.props.item
-        console.log(this.props)
+
+        // challenge: display all available info to user
+        // get time, date when created and when completed
+        // add two buttons, one to toggle complete (change text on button)
+        // one to delete item from list. Redirect you back to list
+        console.log(this.props.item)
+
         return(
             <div className="center">
                 <h1>To Do Item</h1>

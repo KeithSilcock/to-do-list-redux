@@ -30,3 +30,9 @@ export function getSingleItem(id) {
         payload: response
     }
 }
+
+// To toggle complete of an item:
+// axios.put(`${BASE_URL}/todos/${id + API_KEY}`);
+
+// To Delete an item:
+// axios.delete(`${BASE_URL}/todos/${id + API_KEY}`);
