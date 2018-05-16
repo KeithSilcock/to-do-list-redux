@@ -7,8 +7,14 @@ import {addToDoItem} from'../actions';
 class AddItem extends React.Component{
 
     async handleAddItem(values){
-        await this.props.addToDoItem(values);
-        this.props.history.push('/');
+
+        try{
+            await this.props.addToDoItem(values);
+            this.props.history.push('/');
+        }catch(err){
+            console.warn(err.message)
+        }
+
     }
     
     renderInput({label, input, meta:{touched, error}}){
