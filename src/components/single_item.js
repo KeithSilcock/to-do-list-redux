@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getSingleItem} from '../actions'
+import {getSingleItem, completeItem} from '../actions'
 
 class SingleItem extends React.Component{
 
@@ -9,8 +9,13 @@ class SingleItem extends React.Component{
         this.props.getItem(this.props.match.params.id)
     }
 
+    clickToggleComplete(){
+        const _id= this.props.match.params.id;
+        this.props.completeItem(_id);
+    }
+
     render(){
-        const {title, details} = this.props.item
+        const {title, details, complete} = this.props.item;
 
         // challenge: display all available info to user
         // get time, date when created and when completed
@@ -19,13 +24,15 @@ class SingleItem extends React.Component{
         console.log(this.props.item)
 
         return(
-            <div className="center">
-                <h1>To Do Item</h1>
+            <div>
+                <h1 className="center">To Do Item</h1>
                 <div className="row right-align">
                     <Link to='/' className='btn green darken-3'>Back to Full List</Link>
                 </div>
                 <h3>{title}</h3>
                 <h4>{details}</h4>
+                <p>Item is: {complete ? 'completed' : 'incomplete'}</p>
+                <button className='btn purple darken-2' onClick={this.clickToggleComplete.bind(this)}>Toggle complete</button>
             </div>
         )
     }
@@ -33,8 +40,9 @@ class SingleItem extends React.Component{
 
 function mapStateToProps(state){
     return {
-        item: state.list.single
+        item: state.list.single,
+        complete: state.list.complete
     }
 }
 
-export default connect(mapStateToProps, {getItem: getSingleItem})(SingleItem);
+export default connect(mapStateToProps, {getItem: getSingleItem, completeItem})(SingleItem);
