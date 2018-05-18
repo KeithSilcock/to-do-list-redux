@@ -14,8 +14,16 @@ class SingleItem extends React.Component{
         this.props.completeItem(_id);
     }
 
+    checkCompleteness(ifTrue, ifFalse){
+
+    }
+
     render(){
         const {title, details, complete} = this.props.item;
+
+        function completness(ifTrue, ifFalse){
+            return complete ? ifTrue : ifFalse
+        }
 
         // challenge: display all available info to user
         // get time, date when created and when completed
@@ -31,8 +39,9 @@ class SingleItem extends React.Component{
                 </div>
                 <h3>{title}</h3>
                 <h4>{details}</h4>
-                <p>Item is: {complete ? 'completed' : 'incomplete'}</p>
-                <button className='btn purple darken-2' onClick={this.clickToggleComplete.bind(this)}>Toggle complete</button>
+                <p>Item is: {completness('complete', 'incomplete')}</p>
+                <button className={`btn ${completness('green', 'red')} darken-2`}
+                        onClick={this.clickToggleComplete.bind(this)}>{completness('Toggle Incomplete','Complete Task')}</button>
             </div>
         )
     }
